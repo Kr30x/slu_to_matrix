@@ -1,7 +1,7 @@
 # slu_to_matrix
 Simplifies transformation of extended matrices with integer elements
 
-#installation
+# installation
 1) download files from repository
 2) use ```pip install pyperclip``` to download required library for clipboard operations
 3) That's it!
