@@ -5,10 +5,17 @@ import pyperclip
 n, var_num = list(map(int, input(
     "Количество уравнений в СЛУ и количество переменных (здесь, количество столбцов в матрице): ").split()))
 ans = ''
-eqs = []
-for i in range(1, n + 1):
-    eq = list(map(int, input().split()))
-    eqs.append(eq)
+eqs = [0] * n
+consts = [0] * n
+for i in range(n):
+    line = input().split()
+    eqs[i] = [0] * len(line)
+    consts[i] = [""] * len(line)
+    for j, item in enumerate(line):
+        try:
+            eqs[i][j] = int(item)
+        except:
+            consts[i][j] = item
 var_num += 1
 
 
@@ -33,7 +40,13 @@ def get_string(matrix):
         elif var_num == 6:
             ans += r"\rowsix"
         for j in range(var_num - 2):
-            ans += "{" + f"{matrix[i][j]}" + '}'
+            if eqs[i][j] < 0:
+                ans += "{" + f"{consts[i][j]}{matrix[i][j]}" + '}'
+            else:
+                if eqs[i][j] != 0:
+                    ans += "{" + f"{consts[i][j]}+{matrix[i][j]}" + '}'
+                else:
+                    ans += "{" + f"{consts[i][j]}" + '}'
         ans += r"{|}"
         ans += "{" + f"{matrix[i][-1]}" + '}'
         ans += '}'
@@ -43,7 +56,16 @@ def get_string(matrix):
 def print_matrix():
     global eqs
     for i, line in enumerate(eqs):
-        print(f"{i + 1}:", *line)
+        print(f"{i + 1}:", end="")
+        for j in range(len(line)):
+            if eqs[i][j] < 0 or consts[i][j] == "":
+                print(f"{consts[i][j]}{eqs[i][j]}", end=" ")
+            else:
+                if eqs[i][j] != 0:
+                    print(f"{consts[i][j]}+{eqs[i][j]}", end=" ")
+                else:
+                    print(f"{consts[i][j]}", end=" ")
+        print()
 
 
 def add_to_line_lambda(to, line, l):
