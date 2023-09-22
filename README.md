@@ -1,29 +1,31 @@
 # slu_to_matrix
-Simplifies transformation of extended matrices with integer elements
+Упрощает работу с расширенными матрицами для решения СЛУ
 
-# installation
-1) download files from repository
-2) use ```pip install pyperclip``` to download required library for clipboard operations
-3) That's it!
+# Установка
+1) скачать файлы ```main.py``` и ```gset.sty``` 
+2) В терминале установить с помощью команды ```pip install pyperclip``` библиотеку для операций с буфером обмена
 
 
-# gset matrix view
+# gset представление матриц
 Mat(m, n) = \matrix_m{\row_n{elem1, elem2, ..., elem_n}}{...} \
-This view is made for LaTeX and works with file gset.sty \
-Right now there are matrices up to m = 4, n = 5. 
-Be sure to istall it with your LaTeX project.
-To use package write ```\usepackage{gset}``` command in your LaTeX editor.
+Это представление сделано для LaTeX и работает с пакетом gset.sty \
+Сейчас поддерживаются матрицы с размером до m = 4, n = 5. 
+Убедитесь, что пакет gset.sty установлен в папку вместе с вашим LaTeX проектом.
+Чтобы подключить пакет в LaTeX используйте команду ```\usepackage{gset}```.
 
-# how to use
-1) Set number of variables and equasions
-2) use commands to operate with matrix
-3) input arguments for command
-4) after each command a matrix code in gset structure will be copied to your clipboard
+# Как использовать
+1) Задать количество строк и столбцов в матрице
+2) Задать матрицу построчно, разделяя элементы пробелом
+3) Использовать команды для преобразования матрицы
+3.1) Написать кодовое слово команды
+3.2) Ввести аргументы команды
+4) После каждой команды в буфер обмена будет скопирован gset код полученной матрицы, матрица изменится в самой программе
+5) Использовать полученный gset код в LaTeX документе
 
-# commands 
-1) ```add (insert_line, addition_line, koef)``` -> ads addition_line to insert_line with coefficient koef
-2) ```swap (line1, line2)``` -> swaps line1 and line2
-3) ```mult (line, koef)``` -> multiplies line by coefficient koef
-4) ```del (line)``` -> deletes line
-5) ```set (line)``` -> replaces line with new inputed line
-6) ```end ()``` -> ends the program
+# Команды
+1) ```add (insert_line, addition_line, koef)``` -> добавляет ```addition_line``` к ```insert_line``` с коэффициентом ```koef```
+2) ```swap (line1, line2)``` -> меняет местами ```line1``` и ```line2```
+3) ```mult (line, koef)``` -> умножает ```line``` на коэффициент ```koef```
+4) ```del (line)``` -> удаляет ```line```
+5) ```set (line)``` -> заменяет ```line``` новой введенной строкой
+6) ```end ()``` -> завершает программу
