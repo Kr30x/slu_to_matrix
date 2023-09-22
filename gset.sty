@@ -1,0 +1,41 @@
+%% Set of cmd for Latex by Gleb Golubev
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage[left=2.50cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{graphicx}
+\usepackage{mathdots}
+\mathchardef\mathperiod=\mathcode`*
+\mathcode`*=\cdot
+
+%% Spacing
+\newcommand{\bspace}{\\\\\\}
+\newcommand{\sspace}{\\\\}
+
+
+%% Matrices  !!! use with $ ... $ structure
+\newcommand{\rowtwo}[2]{#1 & #2}
+\newcommand{\rowthree}[3]{#1 &#2 &#3}
+\newcommand{\rowfor}[4]{#1 &#2 &#3 &#4}
+\newcommand{\rowfive}[5]{#1 & #2 & #3 & #4 & #5}
+\newcommand{\rowsix}[6]{#1 & #2 & #3 & #4 & #5 & #6}
+\newcommand{\mattwo}[2]{\begin{pmatrix} #1 \\#2  \end{pmatrix}}
+\newcommand{\matthree}[3]{\begin{pmatrix} #1 \\#2 \\ #3 \end{pmatrix}}
+\newcommand{\mtrfor}[4]{\begin{pmatrix} #1 \\#2 \\ #3 \\ #4 \end{pmatrix}}
+\newcommand{\zeromat}{\left ( \begin{array}{rr} 0 & 0\\ 0 & 0 \end{array} \right )}
+\newcommand{\onemat}{\left ( \begin{array}{rr} 1 & 0\\ 0 & 1 \end{array} \right )}
+\newcommand{\matA}{A_n = \mtrfor{\rowfor{a_{1,1}}{a_{1,2}}{\cdots}{a_{1,n}}}{\rowfor{a_{2, 1}}{a_{2,2}}{\cdots}{\vdots}}{\rowfor{\vdots}{\vdots}{\ddots}{a_{n,n}}}{\rowfor{a_{n, 1}}{a_{n,2}}{\cdots}{a_{n,n}}}}
+\newcommand{\matB}{B_n = \mtrfor{\rowfor{b_{1,1}}{b_{1,2}}{\cdots}{b_{1,n}}}{\rowfor{b_{2, 1}}{b_{2,2}}{\cdots}{\vdots}}{\rowfor{\vdots}{\vdots}{\ddots}{b_{n,n}}}{\rowfor{b_{n, 1}}{b_{n,2}}{\cdots}{b_{n,n}}}}
+\newcommand{\matX}{X_n = \mtrfor{\rowfor{x_{1,1}}{x_{1,2}}{\cdots}{x_{1,n}}}{\rowfor{x_{2, 1}}{x_{2,2}}{\cdots}{\vdots}}{\rowfor{\vdots}{\vdots}{\ddots}{x_{n,n}}}{\rowfor{x_{n, 1}}{x_{n,2}}{\cdots}{x_{n,n}}}}
+
+%% Text editing
+\newcommand{\B}[1]{\textbf{#1}}
+\newcommand{\answer}{\B{Ответ: }}
+\newcommand{\maintitle}[1]{\begin{center} \B{\underline{#1}}\end{center}}
+\newcommand{\auth}[1]{\begin{center} \B{#1}\end{center}}
+
+%% Symbol redef
+
+\newcommand{\rsa}{\rightsquigarrow}
