@@ -40,7 +40,7 @@ def get_string(matrix):
         elif var_num == 6:
             ans += r"\rowsix"
         for j in range(var_num - 2):
-            if eqs[i][j] < 0:
+            if eqs[i][j] < 0 or consts[i][j] == "":
                 ans += "{" + f"{consts[i][j]}{matrix[i][j]}" + '}'
             else:
                 if eqs[i][j] != 0:
@@ -131,7 +131,7 @@ while True:
     if cmd == "set":
         try:
             line = int(input("line: "))
-            eqs = list(map(int, input(f"{line}: ").split()))
+            eqs[line] = list(map(int, input(f"{line}: ").split()))
         except:
             print('bad input', file=sys.stderr)
     if cmd == "end":
