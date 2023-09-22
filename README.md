@@ -8,8 +8,9 @@ Simplifies transformation of extended matrices with integer elements
 
 
 # gset matrix view
-Mat(m, n) = \matrix_m{\row_n{elem1, elem2, ..., elem_n}}{...}
-This view is made for LaTeX and works with file gset.sty
+Mat(m, n) = \matrix_m{\row_n{elem1, elem2, ..., elem_n}}{...} \
+This view is made for LaTeX and works with file gset.sty \
+Right now there are matrices up to m = 4, n = 5. 
 Be sure to istall it with your LaTeX project.
 To use package write ```\usepackage{gset}``` command in your LaTeX editor.
 
