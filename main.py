@@ -1,6 +1,9 @@
+import sys
+
 import pyperclip
 
-n, var_num = list(map(int, input("Количество уравнений в СЛУ и количество переменных (здесь, количество столбцов в матрице): ").split()))
+n, var_num = list(map(int, input(
+    "Количество уравнений в СЛУ и количество переменных (здесь, количество столбцов в матрице): ").split()))
 ans = ''
 eqs = []
 for i in range(1, n + 1):
@@ -77,22 +80,37 @@ while True:
     pyperclip.copy(get_string(eqs))
     cmd = input("cmd: ")
     if cmd == "add":
-        to, line, koef = list(map(float, input("to, line, koef: ").split()))
-        to = int(to)
-        line = int(line)
-        add_to_line_lambda(to, line, koef)
+        try:
+            to, line, koef = list(map(float, input("to, line, koef: ").split()))
+            to = int(to)
+            line = int(line)
+            add_to_line_lambda(to, line, koef)
+        except:
+            print('bad input', file=sys.stderr)
     if cmd == "swap":
-        a, b = list(map(int, input("line1, line2: ").split()))
-        swap(a, b)
+        try:
+            a, b = list(map(int, input("line1, line2: ").split()))
+            swap(a, b)
+        except:
+            print('bad input', file=sys.stderr)
     if cmd == "mult":
-        line, koef = list(map(float, input("line, koef: ").split()))
-        line = int(line)
-        mult(line, koef)
+        try:
+            line, koef = list(map(float, input("line, koef: ").split()))
+            line = int(line)
+            mult(line, koef)
+        except:
+            print('bad input', file=sys.stderr)
     if cmd == "del":
-        line = int(input("line: "))
-        delete(line)
+        try:
+            line = int(input("line: "))
+            delete(line)
+        except:
+            print('bad input', file=sys.stderr)
     if cmd == "set":
-        line = int(input("line: "))
-        eqs = list(map(int, input(f"{line}: ").split()))
+        try:
+            line = int(input("line: "))
+            eqs = list(map(int, input(f"{line}: ").split()))
+        except:
+            print('bad input', file=sys.stderr)
     if cmd == "end":
         exit(0)
