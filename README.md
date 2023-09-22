@@ -1,6 +1,12 @@
 # slu_to_matrix
 Simplifies transformation of extended matrices with integer elements
 
+#installation
+1) download files from repository
+2) use ```pip install pyperclip``` to download required library for clipboard operations
+3) That's it!
+
+
 # gset matrix view
 Mat(m, n) = \matrix_m{\row_n{elem1, elem2, ..., elem_n}}{...}
 This view is made for LaTeX and works with file gset.sty
