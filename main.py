@@ -1,6 +1,6 @@
 import pyperclip
 
-n, var_num = list(map(int, input("Количество уравнений в СЛУ и количество переменных: ").split()))
+n, var_num = list(map(int, input("Количество уравнений в СЛУ и количество переменных (здесь, количество столбцов в матрице): ").split()))
 ans = ''
 eqs = []
 for i in range(1, n + 1):
