@@ -17,6 +17,7 @@ signal.signal(signal.SIGINT, signal_handler)
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Matrix Operations Script")
 parser.add_argument("-raw", action="store_true", help="Enable raw mode (no divider in LaTeX and console output)")
+parser.add_argument("-dn", action="store_true", help="Use default LaTeX notation (\\begin{pmatrix} and \\end{pmatrix})")
 args = parser.parse_args()
 
 def help_function():
@@ -55,50 +56,68 @@ def get_string(matrix):
     global n
     global var_num
     ans = ""
-    if n == 2:
-        ans += "\mattwo"
-    elif n == 3:
-        ans += "\matthree"
-    elif n == 4:
-        ans += "\matfour"
-    elif n == 5:
-        ans += "\matfive"
-    else:
+    
+    if args.dn or n > 5:
         ans += r"\begin{pmatrix}"
+    elif n == 2:
+        ans += r"\mattwo"
+    elif n == 3:
+        ans += r"\matthree"
+    elif n == 4:
+        ans += r"\matfour"
+    elif n == 5:
+        ans += r"\matfive"
     
     for i in range(n):
-        if var_num == 3:
-            ans += r"\rowthree"
-        elif var_num == 4:
-            ans += r"\rowfour"
-        elif var_num == 5:
-            ans += r"\rowfive"
-        elif var_num == 6:
-            ans += r"\rowsix"
-        elif var_num == 7:
-            ans += r"\rowseven"
-        elif var_num == 8:
-            ans += r"\roweight"
-        elif var_num == 9:
-            ans += r"\rownine"
-        else:
-            ans += "&".join(["{}" for _ in range(var_num)])
-        
-        for j in range(var_num - 1):
-            if eqs[i][j] < 0 or consts[i][j] == "":
-                ans += "{" + f"{consts[i][j]}{matrix[i][j]}" + '}'
-            else:
-                if eqs[i][j] != 0:
-                    ans += "{" + f"{consts[i][j]}+{matrix[i][j]}" + '}'
+        if args.dn:
+            row_content = []
+            for j in range(var_num):
+                if j < var_num - 1:
+                    if eqs[i][j] < 0 or consts[i][j] == "":
+                        row_content.append(f"{consts[i][j]}{matrix[i][j]}")
+                    else:
+                        if eqs[i][j] != 0:
+                            row_content.append(f"{consts[i][j]}+{matrix[i][j]}")
+                        else:
+                            row_content.append(f"{consts[i][j]}")
                 else:
-                    ans += "{" + f"{consts[i][j]}" + '}'
-        if not args.raw:
-            ans += r"{|}"
-        ans += "{" + f"{matrix[i][-1]}" + '}'
+                    row_content.append(f"{matrix[i][j]}")
+            
+            ans += " & ".join(row_content)
+        else:
+            if var_num == 3:
+                ans += r"\rowthree"
+            elif var_num == 4:
+                ans += r"\rowfour"
+            elif var_num == 5:
+                ans += r"\rowfive"
+            elif var_num == 6:
+                ans += r"\rowsix"
+            elif var_num == 7:
+                ans += r"\rowseven"
+            elif var_num == 8:
+                ans += r"\roweight"
+            elif var_num == 9:
+                ans += r"\rownine"
+            else:
+                ans += "&".join(["{}" for _ in range(var_num)])
+            
+            for j in range(var_num - 1):
+                if eqs[i][j] < 0 or consts[i][j] == "":
+                    ans += "{" + f"{consts[i][j]}{matrix[i][j]}" + '}'
+                else:
+                    if eqs[i][j] != 0:
+                        ans += "{" + f"{consts[i][j]}+{matrix[i][j]}" + '}'
+                    else:
+                        ans += "{" + f"{consts[i][j]}" + '}'
+            if not args.raw:
+                ans += r"{|}"
+            ans += "{" + f"{matrix[i][-1]}" + '}'
+        
         if i < n - 1:
-            ans += "\\\\"
+            ans += r" \\"
     
-    if n > 5:
+    if args.dn or n > 5:
         ans += r"\end{pmatrix}"
     
     return ans
