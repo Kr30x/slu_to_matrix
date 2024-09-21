@@ -1,17 +1,19 @@
 %% Set of cmd for Latex by Gleb Golubev
 
-\usepackage[utf8]{inputenc}
-\usepackage[T2A]{fontenc}
 \usepackage[english, russian]{babel}
-\usepackage{amsmath, amsfonts, amssymb}
-\usepackage[left=2.50cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
-\usepackage{graphicx}
-\usepackage{mathdots}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{gauss}
+\usepackage{cancel}
+\usepackage{titleps}
+\usepackage{systeme}
 \mathchardef\mathperiod=\mathcode`*
 \mathcode`*=\cdot
 
 %% Spacing
-\newcommand{\bspace}{\\\\\\}
+\newcommand{\bs}{\\\\\\}
 \newcommand{\sspace}{\\\\}
 
 
@@ -21,8 +23,17 @@
 \newcommand{\rowfor}[4]{#1 &#2 &#3 &#4}
 \newcommand{\rowfive}[5]{#1 & #2 & #3 & #4 & #5}
 \newcommand{\rowsix}[6]{#1 & #2 & #3 & #4 & #5 & #6}
+\newcommand{\rowseven}[7]{#1 & #2 & #3 & #4 & #5 & #6 & #7}
+\newcommand{\roweight}[8]{#1 & #2 & #3 & #4 & #5 & #6 & #7 & #8}
+\newcommand{\rownine}[9]{#1 & #2 & #3 & #4 & #5 & #6 & #7 & #8 & #9}
 \newcommand{\mattwo}[2]{\begin{pmatrix} #1 \\#2  \end{pmatrix}}
 \newcommand{\matthree}[3]{\begin{pmatrix} #1 \\#2 \\ #3 \end{pmatrix}}
+\newcommand{\matfour}[4]{\begin{pmatrix} #1 \\#2 \\ #3 \\ #4 \end{pmatrix}}
+\newcommand{\matfive}[5]{\begin{pmatrix} #1 \\#2 \\ #3 \\ #4 \\ #5 \end{pmatrix}}
+\newcommand{\dettwo}[2]{\left | \begin{array}{rr} #1 \\ #2  \end{array} \right |}
+\newcommand{\detthree}[3]{\left | \begin{array}{rrr} #1 \\ #2 \\ #3  \end{array} \right |}
+\newcommand{\detfour}[4]{\left | \begin{array}{rrrr} #1 \\ #2 \\ #3 \\ #4 \end{array} \right |}
+\newcommand{\detfive}[5]{\left | \begin{array}{rrrrr} #1 \\ #2 \\ #3 \\ #4 \\ #5 \end{array} \right |}
 \newcommand{\mtrfor}[4]{\begin{pmatrix} #1 \\#2 \\ #3 \\ #4 \end{pmatrix}}
 \newcommand{\zeromat}{\left ( \begin{array}{rr} 0 & 0\\ 0 & 0 \end{array} \right )}
 \newcommand{\onemat}{\left ( \begin{array}{rr} 1 & 0\\ 0 & 1 \end{array} \right )}
@@ -38,4 +49,9 @@
 
 %% Symbol redef
 
+\newcommand{\xor}{\oplus}
 \newcommand{\rsa}{\rightsquigarrow}
+\newcommand{\usv}{\xlongrightarrow{\text{УСВ}}}
+\newcommand{\fsr}{\xlongrightarrow{\text{ФСР}}}
+
+\newcommand{\textarrow}[1]{\xlongrightarrow{\text{#1}}}
