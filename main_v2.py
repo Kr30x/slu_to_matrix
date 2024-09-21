@@ -2,6 +2,7 @@ import sys
 import pyperclip
 import os
 import signal
+import argparse
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -12,6 +13,11 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Matrix Operations Script")
+parser.add_argument("-raw", action="store_true", help="Enable raw mode (no divider in LaTeX and console output)")
+args = parser.parse_args()
 
 def help_function():
     print("""
@@ -42,7 +48,8 @@ for i in range(n):
             eqs[i][j] = int(item)
         except:
             consts[i][j] = item
-var_num += 1
+if not args.raw:
+    var_num += 1
 
 def get_string(matrix):
     global n
@@ -50,12 +57,16 @@ def get_string(matrix):
     ans = ""
     if n == 2:
         ans += "\mattwo"
-    if n == 3:
+    elif n == 3:
         ans += "\matthree"
-    if n == 4:
-        ans += "\mtrfor"
+    elif n == 4:
+        ans += "\matfour"
+    elif n == 5:
+        ans += "\matfive"
+    else:
+        ans += r"\begin{pmatrix}"
+    
     for i in range(n):
-        ans += "{"
         if var_num == 3:
             ans += r"\rowthree"
         elif var_num == 4:
@@ -64,7 +75,16 @@ def get_string(matrix):
             ans += r"\rowfive"
         elif var_num == 6:
             ans += r"\rowsix"
-        for j in range(var_num - 2):
+        elif var_num == 7:
+            ans += r"\rowseven"
+        elif var_num == 8:
+            ans += r"\roweight"
+        elif var_num == 9:
+            ans += r"\rownine"
+        else:
+            ans += "&".join(["{}" for _ in range(var_num)])
+        
+        for j in range(var_num - 1):
             if eqs[i][j] < 0 or consts[i][j] == "":
                 ans += "{" + f"{consts[i][j]}{matrix[i][j]}" + '}'
             else:
@@ -72,9 +92,15 @@ def get_string(matrix):
                     ans += "{" + f"{consts[i][j]}+{matrix[i][j]}" + '}'
                 else:
                     ans += "{" + f"{consts[i][j]}" + '}'
-        ans += r"{|}"
+        if not args.raw:
+            ans += r"{|}"
         ans += "{" + f"{matrix[i][-1]}" + '}'
-        ans += '}'
+        if i < n - 1:
+            ans += "\\\\"
+    
+    if n > 5:
+        ans += r"\end{pmatrix}"
+    
     return ans
 
 def print_matrix():
@@ -92,6 +118,8 @@ def print_matrix():
                 else:
                     value = f"{consts[i][j]}"
             print(f"{value:>{max_width}}", end="\t")
+            if j == len(line) - 2 and not args.raw:
+                print("|", end="\t")
         print()
 
 def add_to_line_lambda(to, line, l):
